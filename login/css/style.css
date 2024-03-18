@@ -1,0 +1,18 @@
+/* #1f3952 */ 
+
+:root {
+    --bg-color: #1f3952;
+}
+
+.main-box {
+    background-color: var(--bg-color);
+    width: 400px;
+    height: 300px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
