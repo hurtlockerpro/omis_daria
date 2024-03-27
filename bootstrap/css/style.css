@@ -3,6 +3,7 @@
     --bg-light-gray: #494949;
     --bg-red: #fb4834;
     --bg-dark-gray: #333333;
+    --bs-card-height: 50%;
 }
 
 .bg-dark {
@@ -38,6 +39,44 @@
 
     .navbar{
         padding: 0 !important;
+    }
+
+    /* CUSTOM CARD */
+    header .card {
+        height: 50%;
+    }
+
+    .card {
+        border-radius: 0;
+        border: 0;
+    }
+
+    .card-img {
+        border: 0;
+        border-radius: 0;
+    }
+
+    .row > * {
+        padding: 0;
+    }
+
+    .list-group {
+        border-radius: 0;
+    }
+
+    .list-group-item {
+        background-color: var(--bg-dark-gray) !important;
+        color: white;
+        flex-grow: 1;
+    }
+
+    .card-img-overlay{
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* different cards */
+    .img-fluid{
+        width: 75%;
     }
 
 }
