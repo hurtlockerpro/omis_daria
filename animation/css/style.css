@@ -1,0 +1,35 @@
+.box{
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    position: relative;
+
+    animation-name: box-moving;
+    animation-duration: 4s;
+    /*animation-delay: 1s;*/
+    animation-direction: normal;
+    animation-timing-function: cubic-bezier(0.83,-0.11, 0, 0.87);
+    animation-iteration-count: infinite;
+    /*animation-fill-mode: forwards;*/
+}
+
+@keyframes box-moving {
+    0% {
+        left: 0px; 
+        background-color: blueviolet;       
+    }
+    100% {
+        left: 600px;
+        background-color: green;
+    }
+}
+
+@keyframes box-rounding {
+    from {
+        border-radius: 0;
+    }
+    to {
+        border-radius: 100%;
+    }
+}
+
