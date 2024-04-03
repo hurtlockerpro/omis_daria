@@ -10,7 +10,7 @@
             "request": "launch",
             "name": "my js debug",
             "url": "http://localhost:5500/",
-            "webRoot": "${workspaceFolder}/js/index.js"
+            "webRoot": "${workspaceFolder}/animation/js/index.js"
         }
     ]
 }
