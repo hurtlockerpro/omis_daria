@@ -1,5 +1,10 @@
 
+google.charts.load('current', {'packages':['bar']});
+
 let questionsList = document.getElementById('questionsList')
+let btnNO = document.getElementById('btnNO')
+let btnYES = document.getElementById('btnYES')
+let btnShowChart = document.getElementById('btnShowChart')
 
 
 let questions = [
@@ -25,8 +30,116 @@ let questions = [
 
 /*
 qustion_id: answer_clicked
+ ['Copper', 8.94, '#b87333', 'Cu' ],
 */
-let results = []
+let results = [
+    /*{ // 0
+        question_id: 1,
+        yes: 0,
+        no: 0    
+    }*/
+]
+
+btnNO.addEventListener('click', event => {
+    console.log(activeID);
+    saveAnswer(activeID, 'NO')
+})
+
+btnYES.addEventListener('click', event => {
+    console.log(activeID);
+    saveAnswer(activeID, 'YES')
+})
+
+btnShowChart.addEventListener('click', event => {
+    if (results.length == questions.length)
+    {
+        // show chart
+        
+        let chartWithData = drawChart(parseResultForGoogleChart())
+        google.charts.setOnLoadCallback(chartWithData);
+
+    } else {
+
+        let modal = document.getElementById('exampleModal')
+        modal.querySelector('#exampleModalLabel').innerText = 'Info'
+        modal.querySelector('#mdlInfoBody').innerText = 'Answer all questions!'
+
+        const mdlInfo = new bootstrap.Modal(modal, {})
+        mdlInfo.show()
+    }
+})
+
+function drawChart(customData) {
+    //console.log(customData);
+    var data = google.visualization.arrayToDataTable(customData);
+
+    var options = {
+      chart: {
+        title: 'Question results',
+        subtitle: 'My custom answers yes/no',
+      }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('chart_div'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+  }
+
+function saveAnswer(questionID, answer){
+
+    // 0 == -1
+    if (results.length == 0){
+        results.push({
+          question_id: questionID.toString(),
+          yes: answer.toUpperCase() == 'YES' ? 1 : 0,
+          no: answer.toUpperCase() == 'NO' ? 1 : 0    
+        })  
+    } else {
+        // save existing results
+        let isResultsFound = false
+        results.forEach((result, index) => {
+            if (result.question_id == questionID)
+            {
+                if (answer.toUpperCase() == 'NO')
+                {
+                    result.no += 1
+                } else if (answer.toUpperCase() == 'YES') {
+                    result.yes += 1
+                }
+                isResultsFound = true
+            }
+        })
+        // save additional result for question
+        if (isResultsFound == false){
+            results.push({
+                question_id: questionID.toString(),
+                yes: answer.toUpperCase() == 'YES' ? 1 : 0,
+                no: answer.toUpperCase() == 'NO' ? 1 : 0    
+              }) 
+        }
+    }
+
+
+    
+}
+
+function parseResultForGoogleChart(){
+    //['Copper', 8.94, '#b87333', 'Cu' ],
+    let data = [
+            ['Question ID', 'Answer Yes', 'Answer No' ],
+    ]
+
+    if (results.length >= 1)
+    {
+        results.forEach(result => {
+            data.push([
+                result.question_id,
+                result.yes,
+                result.no
+            ])
+        })
+    }
+    return data
+}
 
 function createNewLiElement(text, isActive = false){
     let newLi = document.createElement('li')
