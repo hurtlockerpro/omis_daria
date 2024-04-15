@@ -1,5 +1,23 @@
-#content {
-    width: 500px;
-    height: 500px;
+
+body {
+    min-height: 100vh;
+}
+
+#weather-box {
+    width: 40vw;
+    height: 50vh;
     border: 1px solid red;
+}
+
+#city {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+#temp {
+    font-size: 4.5em; /* 72px */ 
+}
+
+#description {
+    font-style: italic;
+    color: gray;
 }
