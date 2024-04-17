@@ -14,8 +14,12 @@
   "author": "vladimir kähri",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.3.0",
-    "typescript": "^5.4.5"
+    "bootstrap": "^5.3.3",
+    "typescript": "^5.4.5",
+    "express": "^4.19.2"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    
+  }
 }
