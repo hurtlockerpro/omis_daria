@@ -119,13 +119,20 @@ editButtons.forEach(btnEdit => {
                 return response.text()
             })
             .then(form => {
+
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(form, 'text/html');
               
-                let inp = doc.querySelector('#book_name')
+                let form1 = document.getElementById('frmBook')
+                console.log();
+                
+                Array.from(form1.elements).forEach(input => {
+                    input.value = books[editButtonID].book_name
+                })
+
                 inp.value = books[editButtonID].book_name
 
-                modalBody.innerHTML = doc.body.innerHTML   
+                modalBody.innerHTML = doc.body.innerHTML 
             })
         })
         
