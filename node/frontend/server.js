@@ -1,9 +1,7 @@
-import { log } from 'console'
 import {createServer} from 'http'
 import fs from 'fs';
-import path from 'path';
 
-var data = fs.readFileSync('index.html');
+var data = fs.readFileSync('./frontend/index.html');
 
 const server = createServer((request, response) => {
         // Set the response header to indicate HTML content
@@ -11,8 +9,6 @@ const server = createServer((request, response) => {
         // Send the contents of index.html file as the response
         response.end(data);
 
-    //response.writeHead(200, {'Content-type':'text/html; charset=utf-8'})
-    //response.end(content)
 })
 
 server.listen(8080, () => {
