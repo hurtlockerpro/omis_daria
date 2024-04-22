@@ -114,25 +114,24 @@ editButtons.forEach(btnEdit => {
             // do something...
             console.log('modal is shown ');
             let modalBody = myModalEl.querySelector('#modal-body')
-            fetch('./form.html')
+            fetch('../frontend/form.html')
             .then(response => {
                 return response.text()
             })
             .then(form => {
 
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(form, 'text/html');
-              
-                let form1 = document.getElementById('frmBook')
-                console.log();
-                
-                Array.from(form1.elements).forEach(input => {
-                    input.value = books[editButtonID].book_name
+                modalBody.innerHTML = form
+
+                let forma = document.getElementById('frmBook')
+                //var data = new FormData(form);
+                Array.from(forma.elements).forEach(input => {
+                    input.value = books[editButtonID].book_name // todo 
                 })
 
-                inp.value = books[editButtonID].book_name
 
-                modalBody.innerHTML = doc.body.innerHTML 
+                //inp.value = books[editButtonID].book_name
+
+                //modalBody.innerHTML = doc.body.innerHTML 
             })
         })
         
