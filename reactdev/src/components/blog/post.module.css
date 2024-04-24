@@ -1,0 +1,10 @@
+.postTitle {
+    font-size: 14px;
+    color: darkblue;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.postDescription {
+    font-style: italic;
+    color: gray;
+}
