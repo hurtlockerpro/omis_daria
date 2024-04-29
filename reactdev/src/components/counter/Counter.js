@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyButton from '../MyButton/MyButton';
+import MyButton from '../button/MyButton';
 
 
 const Counter = () => {

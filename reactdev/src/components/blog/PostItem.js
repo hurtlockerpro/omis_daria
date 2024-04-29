@@ -1,16 +1,20 @@
 import React from 'react';
-import MyButton from '../MyButton/MyButton';
+import MyButton from '../button/MyButton';
 import postStyle from './post.module.css'
+import MyForm from '../form/MyForm';
+import MyModal from '../modal/MyModal';
 
 
-const PostItem = ({post, index}) => {
+const PostItem = ({post, index, deletePost, editPost}) => {
     //console.log(postItem);
+
     return (
         <div key={index} className='d-flex justify-content-between border border-secondary roudned m-1'>
             <div className={postStyle.postTitle}>{index + 1}. {post.title}</div>
             <div className={postStyle.postDescription}>{post.description}</div>
-            <MyButton title='edit' />
-            <MyButton title='delete' />
+            <MyButton title='edit' color="warning" onClickFn={() => editPost(post)} />
+            <MyModal modalTitle='Edit'><MyForm editPosts={editPost} /></MyModal>
+            <MyButton title='delete' color="danger" onClickFn={() => deletePost(post)} />
         </div>
     );
 };
