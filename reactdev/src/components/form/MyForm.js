@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import MyInput from './MyInput';
 import MyButton from '../button/MyButton';
 
-const MyForm = ({savePosts, editPost, oldPost}) => {
+const MyForm = ({savePosts, editPost, oldPost, isEdit}) => {
 
-    console.log(oldPost);
-    const [post, setPost] = useState({title: '', description: ''})
-    const [isEdit, setIsEdit] = useState(false)
+    
+    const [post, setPost] = useState({title: '', body: ''})
+    //const [isEdit, setIsEdit] = useState(false)
     const titleRef = useRef()
     const descriptionRef = useRef()
 
@@ -22,15 +22,15 @@ const MyForm = ({savePosts, editPost, oldPost}) => {
         const newPost = {
             id: Date.now(),
             title: titleRef.current.value,
-            description: descriptionRef.current.value
+            body: descriptionRef.current.value
         }
         savePosts(newPost)
     }
 
     function updatePost(){
-
+        console.log(oldPost);
+        editPost(oldPost)
     }
-    
 
     return (
         <form>
@@ -39,15 +39,22 @@ const MyForm = ({savePosts, editPost, oldPost}) => {
                 ref={titleRef}
                 placeholder='Insert title' 
                 value={ isEdit ? oldPost.title : post.title}
-                onChange={event => setPost({...post, title: event.target.value })}
+                onChange={event => setPost( isEdit ? 
+                    oldPost.title = event.target.value : 
+                    {...post, title: event.target.value }
+                )}
             />
 
             <MyInput 
                 type="text"
                 ref={descriptionRef}
-                placeholder='Insert description'
-                value={ isEdit ? oldPost.description : post.description }
-                onChange={event => setPost({...post, description: event.target.value })}
+                placeholder='Insert body'
+                value={ isEdit ? oldPost.body : post.body }
+                onChange={event => setPost(
+                    isEdit ? 
+                    oldPost.body = event.target.value :
+                    {...post, body: event.target.value }
+                )}
             />
 
             <MyButton 

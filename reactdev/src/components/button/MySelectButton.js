@@ -6,13 +6,23 @@ title: '',
 href:'',
 onChange:''
 */
-function MySelectButton({options, defaultTitle}) {
+function MySelectButton({options, defaultTitle, setSelectedSort}) {
+
+  const buttonClick = (event) => {
+    event.preventDefault()
+    //console.log(event.target.dataset.sort)
+    setSelectedSort(event.target.dataset.sort)
+  }
+
   return (
     <DropdownButton id="dropdown-basic-button" title={defaultTitle}>
         {
             options.map((option, index) => <Dropdown.Item 
                 key={index}
-                href={option.href}>{option.title}</Dropdown.Item>)
+                href={option.href}
+                onClick={buttonClick}
+                data-sort={option.title}
+              >{option.title}</Dropdown.Item>)
         }
     </DropdownButton>
   );

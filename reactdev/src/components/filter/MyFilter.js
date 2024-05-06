@@ -3,7 +3,7 @@ import MySelectButton from '../button/MySelectButton';
 import MyInput from '../form/MyInput';
 
 
-const MyFilter = ({searchPosts}) => {
+const MyFilter = ({searchPosts, setSelectedSort}) => {
 
     const [searchWord, setSearchWord] = useState('')
     const searchQuery = useRef()
@@ -20,14 +20,15 @@ const MyFilter = ({searchPosts}) => {
                 type="text" 
                 ref={searchQuery}
                 value={searchWord}
-                placeholder="Enter serch word" 
+                placeholder="Enter search word" 
                 onChange={localSearchPosts}
             />
             <MySelectButton defaultTitle="Choose filter" options={[
-                {title: 'a', href: '#1'},
-                {title: 'b', href: '#2'},
-                {title: 'c', href: '#3'},
-            ]}></MySelectButton>
+                {title: 'title', href: '#1'},
+                {title: 'body', href: '#2'},
+            ]}
+            setSelectedSort={setSelectedSort}
+            ></MySelectButton>
         </div>
     );
 };

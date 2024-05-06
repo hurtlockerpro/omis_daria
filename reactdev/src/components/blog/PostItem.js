@@ -11,9 +11,9 @@ const PostItem = ({post, index, deletePost, editPost}) => {
     return (
         <div key={index} className='d-flex justify-content-between border border-secondary roudned m-1'>
             <div className={postStyle.postTitle}>{index + 1}. {post.title}</div>
-            <div className={postStyle.postDescription}>{post.description}</div>
+            <div className={postStyle.postDescription}>{post.body}</div>
             <MyButton title='edit' color="warning" onClickFn={() => editPost(post)} />
-            <MyModal modalTitle='Edit'><MyForm editPosts={editPost} /></MyModal>
+            <MyModal modalTitle='Edit'><MyForm editPost={editPost} oldPost={post} isEdit='true' /></MyModal>
             <MyButton title='delete' color="danger" onClickFn={() => deletePost(post)} />
         </div>
     );
