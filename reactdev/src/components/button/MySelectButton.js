@@ -6,12 +6,12 @@ title: '',
 href:'',
 onChange:''
 */
-function MySelectButton({options, defaultTitle, setSelectedSort}) {
+function MySelectButton({options, defaultTitle, setFilter, filter}) {
 
   const buttonClick = (event) => {
     event.preventDefault()
     //console.log(event.target.dataset.sort)
-    setSelectedSort(event.target.dataset.sort)
+    setFilter({...filter, selectedSort: event.target.dataset.sort})
   }
 
   return (

@@ -3,31 +3,26 @@ import MySelectButton from '../button/MySelectButton';
 import MyInput from '../form/MyInput';
 
 
-const MyFilter = ({searchPosts, setSelectedSort}) => {
+const MyFilter = ({filter, setFilter}) => {
 
-    const [searchWord, setSearchWord] = useState('')
     const searchQuery = useRef()
-
-    const localSearchPosts = (event) => {
-        setSearchWord(event.target.value)
-        console.log(searchQuery.current.value);
-        searchPosts(searchQuery.current.value)
-    }
 
     return (
         <div>
             <MyInput  
                 type="text" 
                 ref={searchQuery}
-                value={searchWord}
+                value={filter.searchWord}
                 placeholder="Enter search word" 
-                onChange={localSearchPosts}
+                onChange={event => setFilter({...filter, searchWord:event.target.value})}
             />
             <MySelectButton defaultTitle="Choose filter" options={[
+                {title: 'id', href: '#1'},
                 {title: 'title', href: '#1'},
                 {title: 'body', href: '#2'},
             ]}
-            setSelectedSort={setSelectedSort}
+            setFilter={setFilter}
+            filter={filter}
             ></MySelectButton>
         </div>
     );
